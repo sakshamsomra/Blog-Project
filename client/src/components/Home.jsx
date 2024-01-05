@@ -21,6 +21,7 @@ export default function Home() {
     const [searchterm, setSearchterm] = useState("");
     const [results, setResults] = useState([]);
     const [buttonClicked, setButtonClicked] = useState(false);
+    const [count, setCount] = useState(0);
 
 
 
@@ -36,7 +37,7 @@ export default function Home() {
         
 
   axios.post("https://blog-project-server-phi.vercel.app/api/likes", formData).then(() => {
-      alert('you liked the post');
+      setCount(count+1);
     })
     .catch((error) => {
       console.error("Error while updating likes:", error);
@@ -61,7 +62,7 @@ export default function Home() {
             setList(response.data);
 
         });
-    }, []);
+    }, [count]);
 
 
 
